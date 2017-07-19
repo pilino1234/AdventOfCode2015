@@ -4,4 +4,4 @@ def move(filename):
     with open(filename) as file:
         return sum(moves[i] for i in file.read())
 
-print(move("day1-input.txt"))
+print(move("day1-1-input.txt"))
