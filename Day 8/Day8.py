@@ -1,17 +1,18 @@
 
-def strlen_total_chars(strings):
-    return sum(len(string) for string in strings)
+def literal_length(string: str) -> int:
+    return len(string)
 
-def strlen(strings):
-    pass
 
-if __name__ == "__main__":
-    print(strlen_total_chars("asdf"))
-    print(strlen_total_chars('"asdf"'))
-    print(strlen_total_chars('"\"asdf\""'))
-    
-    with open("Day8-input.txt") as file:
-        lines = file.read().splitlines()
+def memory_length(string: str) -> int:
+    return len(eval(string))
 
-    print(strlen_total_chars(lines))
-    print(strlen([lines[1:-1] for line in lines]))
+
+if __name__ == '__main__':
+    with open("input.txt") as file:
+        lines = [line.strip() for line in file.readlines()]
+
+    part1 = sum(literal_length(line) for line in lines) - sum(memory_length(line) for line in lines)
+    print(part1)
+
+    encoded_length = sum(2 + line.count('\\') + line.count('"') for line in lines)
+    print(encoded_length)
